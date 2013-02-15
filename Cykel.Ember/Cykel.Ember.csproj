@@ -147,15 +147,12 @@
     <Compile Include="Services\StationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\App.js" />
-    <Content Include="Scripts\ember-1.0.0-pre.2.js" />
-    <Content Include="Scripts\ember-1.0.0-pre.3.js" />
-    <Content Include="Scripts\ember-1.0.0-pre.4.js" />
-    <Content Include="Scripts\ember-data-latest.js" />
-    <Content Include="Scripts\handlebars.js" />
-    <Content Include="Unity.WebAPI.README.txt" />
+    <Content Include="Scripts\lib\ember-1.0.0-pre.4.js" />
+    <Content Include="Scripts\lib\ember-data-latest.js" />
+    <Content Include="Scripts\lib\handlebars.js" />
+    <Content Include="Scripts\Models.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

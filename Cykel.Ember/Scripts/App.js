@@ -1,40 +1,36 @@
 ﻿App = Ember.Application.create();
 
-App.ApplicationController = Ember.Controller.extend();
-App.ApplicationView = Ember.View.extend({
-    templateName: 'application'
-});;
+App.StationsController = Ember.ArrayController.extend();
+App.StationController = Ember.ObjectController.extend();
 
-App.AllStationsController = Ember.ArrayController.extend();
-App.AllStationsView = Ember.View.extend({
-    templateName: 'stations'
-});
+App.Router.map(function () {
+    this.resource('stations', { path: "/" });
 
-App.Store = DS.Store.extend({
-    adapter: DS.RESTAdapter.create({
-        url: 'api'
-    }),
-    revision: 11
-});
-
-App.Station = DS.Model.extend({
-    name: DS.attr('string'),
-    lat: DS.attr('number'),
-    lng: DS.attr('number'),
-    bikes: DS.attr('number'),
-    free: DS.attr('number')
-});
-
-App.Router = Ember.Router.extend({
-    enableLogging: true,
-    root: Ember.Route.extend({
-        stations: Ember.Route.extend({
-            route: '/',
-            connectOutlets: function (router) {
-                router.get('applicationController').connectOutlet('allStations', App.Station.find());
-            }
-        })
+    this.resource('station', { path: ":station_id" }, function () {
+        this.route('map');
+        this.route('info');
     })
 });
 
-App.initialize();
+App.StationsRoute = Ember.Route.extend({
+    model: function() {
+        return App.Station.find();
+    }
+});
+
+App.StationRoute = Ember.Route.extend({
+    model: function (params) {
+        console.log("StationRoute", params)
+        return App.Station.find(params.station_id);
+    }
+});
+
+App.StationMapRoute = Ember.Route.extend({
+    model: function (params) {
+        console.log("StationMapRoute", params);
+        return this.controllerFor('station').get('model');
+        //var model = this.modelFor('station');
+        //console.log(model);
+        //return model;
+    },
+});

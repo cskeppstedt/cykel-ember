@@ -6,10 +6,33 @@
 <script type="text/x-handlebars" data-template-name="stations">
     <h2>Stations</h2>
     {{#each station in controller}}
-        <div>{{ station.name }}</div>
+        <div>{{#linkTo "station" station}}{{ station.name }}{{/linkTo}}</div>
     {{/each}}
 </script>
 
+<script type="text/x-handlebars" data-template-name="station">
+    <h2>Station</h2>
+    {{#linkTo station.map}}Karta{{/linkTo}}
+    {{#linkTo station.info}}Info{{/linkTo}}
+    {{name}}
+    {{lng}}
+
+    {{controller}}
+
+    {{outlet}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="station/map">
+    <p>map lol</p>
+    <img {{bindAttr src="imgSrc"}} />
+</script>
+
+<script type="text/x-handlebars" data-template-name="station/info">
+    <p>info lol</p>
+    {{name}}
+    {{lng}}
+</script>
 @section scripts {
     @Scripts.Render("~/Scripts/App.js")
+    @Scripts.Render("~/Scripts/Models.js")
 }

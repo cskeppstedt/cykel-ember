@@ -28,9 +28,9 @@ App.StationRoute = Ember.Route.extend({
 App.StationMapRoute = Ember.Route.extend({
     model: function (params) {
         console.log("StationMapRoute", params);
-        return this.controllerFor('station').get('model');
-        //var model = this.modelFor('station');
-        //console.log(model);
-        //return model;
+
+        var model = this.modelFor('station');
+        
+        return model;
     },
 });

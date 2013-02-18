@@ -149,7 +149,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Scripts\App.js" />
-    <Content Include="Scripts\lib\ember-1.0.0-pre.4.js" />
+    <Content Include="Scripts\lib\ember-1.0.0-rc.1.js" />
     <Content Include="Scripts\lib\ember-data-latest.js" />
     <Content Include="Scripts\lib\handlebars.js" />
     <Content Include="Scripts\Models.js" />

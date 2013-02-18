@@ -132,12 +132,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StationListItemBodysController.cs" />
+    <Compile Include="Controllers\StationListItemsController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CitybikesApiModel.cs" />
+    <Compile Include="Models\StationListItemBodys.cs" />
+    <Compile Include="Models\StationListItemBodyModel.cs" />
     <Compile Include="Models\Station.cs" />
+    <Compile Include="Models\StationListItem.cs" />
+    <Compile Include="Models\StationListItemBody.cs" />
+    <Compile Include="Models\StationListItemModel.cs" />
+    <Compile Include="Models\StationListItems.cs" />
     <Compile Include="Models\StationModel.cs" />
     <Compile Include="Models\Stations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

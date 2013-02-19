@@ -1,25 +1,14 @@
-﻿/*App.Store = DS.Store.extend({
-    adapter: DS.RESTAdapter.create({
-        url: 'api'
-    }),
-    revision: 11
-});*/
-
-App.OwnRest = DS.RESTAdapter.extend({
-    buildURL: function (record, suffix) {
-        console.log(record);
-        console.log(suffix);
-        
-        return this._super(record, suffix)
-    },
-});
-
-App.OwnRest.configure('plurals', {
-    station_list_items: "stationlistitems"
+﻿App.UrlConventionAdapter = DS.RESTAdapter.extend({
+    serializer: DS.RESTSerializer.extend({
+        rootForType: function (type) {
+            var name = this._super(type);
+            return name.replace(/_/g, '');
+        }
+    })
 });
 
 App.Store = DS.Store.extend({
-    adapter: App.OwnRest.create({
+    adapter: App.UrlConventionAdapter.create({
         url: 'api'
     }),
     revision: 11,
@@ -37,7 +26,7 @@ App.Station = DS.Model.extend({
 });
 
 
-App.StationListItems = DS.Model.extend({
+App.StationListItem = DS.Model.extend({
     title: DS.attr("string"),
     subTitle: DS.attr("string"),
     body: DS.belongsTo("App.StationListItemBody")

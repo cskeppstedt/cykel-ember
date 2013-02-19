@@ -7,6 +7,6 @@ namespace Cykel.Ember.Models
 {
     public class StationListItemBody
     {
-        public StationListItemBodyModel stationListItemBody { get; set; }
+        public StationListItemBodyModel stationlistitembody { get; set; }
     }
 }

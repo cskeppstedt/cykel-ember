@@ -22,7 +22,7 @@ namespace Cykel.Ember.Controllers
         {
             return new StationListItemBodys
             {
-                stationListItemBodys = this._dbContext.Stations.GetAll().Select(s => new StationListItemBodyModel { bodyText = s.name, id = s.id }).ToList()
+                stationlistitembodys = this._dbContext.Stations.GetAll().Select(s => new StationListItemBodyModel { bodyText = s.name, id = s.id }).ToList()
             };
         }
 
@@ -32,7 +32,7 @@ namespace Cykel.Ember.Controllers
 
             return new StationListItemBody
             {
-                stationListItemBody = new StationListItemBodyModel() { bodyText = station.name, id = station.id }
+                stationlistitembody = new StationListItemBodyModel() { bodyText = station.name, id = station.id }
             };
         }
     }

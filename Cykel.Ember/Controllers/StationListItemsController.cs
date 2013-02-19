@@ -22,7 +22,7 @@ namespace Cykel.Ember.Controllers
         {
             return new StationListItems
             {
-                stationListItems = this._dbContext.Stations.GetAll().Select(s => new StationListItemModel { title = s.name, subTitle = s.lat.ToString() }).ToList()
+                stationlistitems = this._dbContext.Stations.GetAll().Select(s => new StationListItemModel { title = s.name, subTitle = s.lat.ToString() }).ToList()
             };
         }
 
@@ -32,7 +32,7 @@ namespace Cykel.Ember.Controllers
 
             return new StationListItem
             {
-                stationListItem = new StationListItemModel { body = station.bikes, title=station.name, subTitle = station.lat.ToString() }
+                stationlistitem = new StationListItemModel { body = station.bikes, title=station.name, subTitle = station.lat.ToString() }
             };
         }
     }

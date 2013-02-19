@@ -1,8 +1,12 @@
 ﻿App.UrlConventionAdapter = DS.RESTAdapter.extend({
     serializer: DS.RESTSerializer.extend({
         rootForType: function (type) {
-            var name = this._super(type);
-            return name.replace(/_/g, '');
+            var typeString = type.toString();
+            Ember.assert("Your model must not be anonymous. It was " + type, typeString.charAt(0) !== '(');
+
+            var parts = typeString.split(".");
+            var name = parts[parts.length - 1];
+            return name;
         }
     })
 });

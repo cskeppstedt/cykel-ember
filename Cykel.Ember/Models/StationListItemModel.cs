@@ -7,8 +7,9 @@ namespace Cykel.Ember.Models
 {
     public class StationListItemModel
     {
+        public string id { get; set; }
         public string title { get; set; }
         public string subTitle { get; set; }
-        public int body { get; set; }
+        public string body { get; set; }
     }
 }

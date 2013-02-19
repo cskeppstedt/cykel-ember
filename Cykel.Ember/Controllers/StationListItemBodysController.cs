@@ -18,21 +18,21 @@ namespace Cykel.Ember.Controllers
             this._dbContext = dbContext;
         }
 
-        public StationListItemBodys Get()
+        public object Get()
         {
-            return new StationListItemBodys
+            return new
             {
-                stationlistitembodys = this._dbContext.Stations.GetAll().Select(s => new StationListItemBodyModel { bodyText = s.name, id = s.id }).ToList()
+                StationListItemBodys = this._dbContext.Stations.GetAll().Select(s => new StationListItemBodyModel { bodyText = s.name, id = s.id }).ToList()
             };
         }
 
-        public StationListItemBody Get(string id)
+        public object Get(string id)
         {
             var station = this._dbContext.Stations.Get(id);
 
-            return new StationListItemBody
+            return new
             {
-                stationlistitembody = new StationListItemBodyModel() { bodyText = station.name, id = station.id }
+                StationListItemBody = new StationListItemBodyModel() { bodyText = station.name, id = station.id }
             };
         }
     }

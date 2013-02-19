@@ -16,8 +16,6 @@ App.StationsView = App.ListView.extend({
     bodyTemplate: Ember.View.extend({ templateName: "stationBody" })
 });
 
-App.StationView = App.ListView.extend({});
-
 App.StationMapController = Ember.ObjectController.extend({
     expand: function (params) {
         this.get('model').set('isExpanded', !this.get('model').get('isExpanded'));

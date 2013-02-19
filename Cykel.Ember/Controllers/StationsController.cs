@@ -18,19 +18,19 @@ namespace Cykel.Ember.Controllers
             this._dbContext = dbContext;
         }
 
-        public Stations Get()
+        public object Get()
         {
-            return new Stations
+            return new
             {
-                stations = this._dbContext.Stations.GetAll()
+                Stations = this._dbContext.Stations.GetAll()
             };
         }
 
-        public Station Get(string id)
+        public object Get(string id)
         {
-            return new Station
+            return new
             {
-                station = this._dbContext.Stations.Get(id)
+                Station = this._dbContext.Stations.Get(id)
             };
         }
     }

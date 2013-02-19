@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace Cykel.Ember.Controllers
 {
@@ -18,22 +19,25 @@ namespace Cykel.Ember.Controllers
             this._dbContext = dbContext;
         }
 
-        public StationListItems Get()
+        public object Get()
         {
-            return new StationListItems
+            return new
             {
-                stationlistitems = this._dbContext.Stations.GetAll().Select(s => new StationListItemModel { title = s.name, subTitle = s.lat.ToString() }).ToList()
+                StationListItems = this._dbContext.Stations.GetAll().Select(ToModel).ToList()
             };
         }
 
-        public StationListItem Get(string id)
+        public object Get(string id)
         {
-            var station = this._dbContext.Stations.Get(id);
-
-            return new StationListItem
+            return new
             {
-                stationlistitem = new StationListItemModel { body = station.bikes, title=station.name, subTitle = station.lat.ToString() }
+                StationListItem = ToModel(this._dbContext.Stations.Get(id))
             };
+        }
+
+        private StationListItemModel ToModel(StationModel station)
+        {
+            return new StationListItemModel { id=station.id, body = station.id, title = station.name, subTitle = station.lat.ToString() };
         }
     }
 }

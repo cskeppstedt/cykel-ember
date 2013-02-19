@@ -26,10 +26,8 @@
 
 <script type="text/x-handlebars" data-template-name="listItemView">
     IM BATMAN!
-    {{#linkTo "context" this.station }}{{ title }}{{/linkTo}}
+    {{#linkTo "context" station }}{{ title }}{{/linkTo}}
     {{bodyTemplate}}
-
-    Station name: {{ this.station.name }}
 </script>
 
 <script type="text/x-handlebars" data-template-name="stationBody">

@@ -40,7 +40,7 @@ namespace Cykel.Ember.Controllers
             return new StationListItemModel
             {
                 id = station.id,
-                station = station.id,
+                station_id = station.id,
                 body = station.id,
                 title = station.name,
                 subTitle = station.lat.ToString()

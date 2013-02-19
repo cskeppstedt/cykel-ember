@@ -37,7 +37,14 @@ namespace Cykel.Ember.Controllers
 
         private StationListItemModel ToModel(StationModel station)
         {
-            return new StationListItemModel { id=station.id, body = station.id, title = station.name, subTitle = station.lat.ToString() };
+            return new StationListItemModel
+            {
+                id = station.id,
+                station = station.id,
+                body = station.id,
+                title = station.name,
+                subTitle = station.lat.ToString()
+            };
         }
     }
 }

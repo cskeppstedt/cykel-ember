@@ -33,7 +33,8 @@ App.Station = DS.Model.extend({
 App.StationListItem = DS.Model.extend({
     title: DS.attr("string"),
     subTitle: DS.attr("string"),
-    body: DS.belongsTo("App.StationListItemBody")
+    body: DS.belongsTo("App.StationListItemBody"),
+    station: DS.belongsTo("App.Station")
 });
 
 App.StationListItemBody = DS.Model.extend({

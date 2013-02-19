@@ -11,5 +11,6 @@ namespace Cykel.Ember.Models
         public string title { get; set; }
         public string subTitle { get; set; }
         public string body { get; set; }
+        public string station { get; set; }
     }
 }

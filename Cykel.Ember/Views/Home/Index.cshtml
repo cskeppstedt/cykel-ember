@@ -1,50 +1,40 @@
-﻿<script type="text/x-handlebars" data-template-name="application">
-    <h1>Cykel.Ember</h1>
+﻿<script type="text/x-handlebars">
+    <h1>Cykel.Ember root</h1>
+    {{#linkTo "root.list"}}Station list{{/linkTo}}
     {{outlet}}
 </script>
 
-<script type="text/x-handlebars" data-template-name="stations">
-    <h2>Stations</h2>
+<script type="text/x-handlebars" data-template-name="root">
+    <h2>Station root</h2>
+    {{outlet}}
+</script>
 
-    {{#each item in controller}}
-        <div>{{#linkTo "station" item}}{{ item.title }}{{/linkTo}} {{view view.bodyTemplate contentBinding="item"}}</div>
-    {{/each}}
+<script type="text/x-handlebars" data-template-name="root/list">
+    {{ render "StationListItems" }}
+</script>
+
+<script type="text/x-handlebars" data-template-name="context">
+    <h3>Dashboard/context for {{ name }}</h3>
+    {{#linkTo "context.edit" this}}Edit{{/linkTo}}
+    {{#linkTo "context.design" this}}Design{{/linkTo}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="listView">
+    <h3>Stations</h3>
+    {{each controller itemViewClass="App.ListItemView"}} 
+</script>
+
+<script type="text/x-handlebars" data-template-name="listItemView">
+    IM BATMAN!
+    {{#linkTo "context" this.station }}{{ title }}{{/linkTo}}
+    {{bodyTemplate}}
+
+    Station name: {{ this.station.name }}
 </script>
 
 <script type="text/x-handlebars" data-template-name="stationBody">
     i'mma {{view.content.name}} bodytemplate 
 </script>
-
-<script type="text/x-handlebars" data-template-name="station">
-    <h2>Station</h2>
-
-    <div><a {{action allStations}}>Alla stationer</a></div>
-
-    {{#linkTo station.map}}Karta{{/linkTo}}
-    {{#linkTo station.info}}Info{{/linkTo}}
-    {{name}}
-    {{lng}}
-
-    {{controller}}
-
-    {{outlet}}
-</script>
-
-<script type="text/x-handlebars" data-template-name="station/map">
-    <p>map lol</p>
-
-    <div><a {{action expand controller.model }} href="#">visa karta </a></div>
-    {{#if isExpanded}}
-    <img {{bindAttr src="imgSrc"}} />
-    {{/if}}
-</script>
-
-<script type="text/x-handlebars" data-template-name="station/info">
-    <p>info lol</p>
-    {{name}}
-    {{lng}}
-</script>
-
 
 @section scripts {
     @Scripts.Render("~/Scripts/App.js")

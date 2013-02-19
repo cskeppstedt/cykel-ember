@@ -1,47 +1,42 @@
 ﻿App = Ember.Application.create();
 
-App.StationsController = Ember.ArrayController.extend();
-App.StationController = Ember.ObjectController.extend({
-    allStations: function () {
-        this.transitionToRoute('stations');
-    }
-});
+//  ListView and ListItemView ----------------------------------------------
 
-App.ListView = Ember.View.extend({
-    templateName: "stations",
-    bodyTemplate: Ember.View.extend({})
-});
-
-App.StationsView = App.ListView.extend({
-    bodyTemplate: Ember.View.extend({ templateName: "stationBody" })
-});
-
-App.StationMapController = Ember.ObjectController.extend({
-    expand: function (params) {
-        this.get('model').set('isExpanded', !this.get('model').get('isExpanded'));
-    }
-});
-
-App.Router.map(function () {
-    this.resource('stations', { path: "/" });
-
-    this.resource('station', { path: ":station_id" }, function () {
-        this.route('map');
-        this.route('info');
+    App.ListView = Ember.View.extend({
+        templateName: "listView",
+        bodyTemplate: Ember.View.extend({})
     });
-});
 
-App.StationsRoute = Ember.Route.extend({
-    model: function () {
-        return App.StationListItem.find();
-    }
-});
+    App.ListItemView = Ember.View.extend({
+        templateName: 'listItemView'
+    });
 
-App.StationRoute = Ember.Route.extend({
-    model: function (params) {
-        console.log("StationRoute", params);
-        return App.Station.find(params.station_id);
-    }
-});
 
-App.StationMapRoute = Ember.Route.extend({ model: function (params) { return this.modelFor('station'); }, });
+// Station list -----------------------------------------------------------
+
+    App.StationListItemsController = Ember.ArrayController.extend({});
+
+    App.StationListItemsView = App.ListView.extend({
+        bodyTemplate: Ember.View.extend({ templateName: "stationBody" })
+    });
+
+
+// Routes ----------------------------------------------------------------
+
+    App.Router.map(function () {
+        this.resource('root', { path: '/' }, function () {
+            this.route('list');
+
+            this.resource('context', { path: 'context/:station_id' }, function () {
+                this.route('edit');
+                this.route('design');
+            });
+        });
+    });
+    
+    App.RootListRoute = Ember.Route.extend({
+        setupController: function () {
+            //console.log('setting up controller', this.controllerFor('StationListItems'));
+            this.controllerFor('StationListItems').set('model', App.StationListItem.find());
+        }
+    });

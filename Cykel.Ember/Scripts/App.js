@@ -1,4 +1,4 @@
-﻿App = Ember.Application.create();
+﻿    App = Ember.Application.create();
 
 //  ListView and ListItemView ----------------------------------------------
 
@@ -20,7 +20,6 @@
         bodyTemplate: Ember.View.extend({ templateName: "stationBody" })
     });
 
-
 // Routes ----------------------------------------------------------------
 
     App.Router.map(function () {
@@ -33,7 +32,13 @@
             });
         });
     });
-    
+
+    App.ContextRoute = Ember.Route.extend({
+        setupController: function (controller, model) {
+            controller.set('content', App.Station.find(model.id));
+        }
+    });
+
     App.RootListRoute = Ember.Route.extend({
         setupController: function () {
             //console.log('setting up controller', this.controllerFor('StationListItems'));

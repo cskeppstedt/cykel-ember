@@ -1,4 +1,5 @@
-﻿<script type="text/x-handlebars">
+﻿<!--Root-->
+<script type="text/x-handlebars">
     <h1>Cykel.Ember root</h1>
     {{#linkTo "root.list"}}Station list{{/linkTo}}
     {{outlet}}
@@ -9,14 +10,10 @@
     {{outlet}}
 </script>
 
+
+<!--List-->
 <script type="text/x-handlebars" data-template-name="root/list">
     {{ render "StationListItems" }}
-</script>
-
-<script type="text/x-handlebars" data-template-name="context">
-    <h3>Dashboard/context for {{ name }}</h3>
-    {{#linkTo "context.edit" this}}Edit{{/linkTo}}
-    {{#linkTo "context.design" this}}Design{{/linkTo}}
 </script>
 
 <script type="text/x-handlebars" data-template-name="listView">
@@ -26,12 +23,25 @@
 
 <script type="text/x-handlebars" data-template-name="listItemView">
     IM BATMAN!
-    {{#linkTo "context" station }}{{ title }}{{/linkTo}}
+    {{#linkTo "context" this}} {{ title }} : {{ station }}{{/linkTo}}
     {{bodyTemplate}}
 </script>
 
-<script type="text/x-handlebars" data-template-name="stationBody">
-    i'mma {{view.content.name}} bodytemplate 
+<!--Dashboard-->
+<script type="text/x-handlebars" data-template-name="context">
+    <h3>Dashboard/context for name: {{ name }} title: {{title}}</h3>
+    {{#linkTo "context.edit" }}Edit{{/linkTo}}
+    {{#linkTo "context.design" }}Design{{/linkTo}}
+
+    {{outlet}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="context/edit">
+    <p>woot, edit</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="context/design">
+    <p>woot, design</p>
 </script>
 
 @section scripts {

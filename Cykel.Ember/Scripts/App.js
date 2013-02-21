@@ -1,30 +1,10 @@
 ﻿    App = Ember.Application.create();
 
-//  ListView and ListItemView ----------------------------------------------
-
-    App.ListView = Ember.View.extend({
-        templateName: "listView",
-        bodyTemplate: Ember.View.extend({})
-    });
-
-    App.ListItemView = Ember.View.extend({
-        templateName: 'listItemView'
-    });
-
-
-// Station list -----------------------------------------------------------
-
-    App.StationListItemsController = Ember.ArrayController.extend({});
-
-    App.StationListItemsView = App.ListView.extend({
-        bodyTemplate: Ember.View.extend({ templateName: "stationBody" })
-    });
-
 // Routes ----------------------------------------------------------------
 
     App.Router.map(function () {
         this.resource('root', { path: '/' }, function () {
-            this.route('list');
+            this.resource('list', { path: 'list' });
 
             this.resource('context', { path: 'context/:station_id' }, function () {
                 this.route('edit');
@@ -33,15 +13,32 @@
         });
     });
 
-    App.ContextRoute = Ember.Route.extend({
-        setupController: function (controller, model) {
-            controller.set('content', App.Station.find(model.id));
+    App.ListRoute = Ember.Route.extend({
+        setupController: function (controller, ctx) {
+            console.log(App.ListView);
+            controller.set('content', App.StationListItem.find());
         }
     });
 
-    App.RootListRoute = Ember.Route.extend({
-        setupController: function () {
-            //console.log('setting up controller', this.controllerFor('StationListItems'));
-            this.controllerFor('StationListItems').set('model', App.StationListItem.find());
+//  ListView and ListItemView ----------------------------------------------
+
+    App.ListViewItem = Ember.View.extend({
+        expanded: false,
+        templateName: 'listItemView',
+        expand: function () {
+            console.log('expanded!', arguments);
+            this.set('expanded', !this.get('expanded'));
         }
+    });
+
+    App.ListView = Ember.CollectionView.extend({
+        templateName: "list",
+        willInsertElement: function () {
+            var model = this.get('controller').get('content');
+            this.set('content', model);
+        },
+        emptyView: Ember.View.extend({
+            template: Ember.Handlebars.compile("The collection is empty {{controller}}")
+        }),
+        itemViewClass: App.ListViewItem
     });

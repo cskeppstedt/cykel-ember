@@ -1,7 +1,7 @@
 ﻿<!--Root-->
 <script type="text/x-handlebars">
     <h1>Cykel.Ember root</h1>
-    {{#linkTo "root.list"}}Station list{{/linkTo}}
+    {{#linkTo "list"}}Station list{{/linkTo}}
     {{outlet}}
 </script>
 
@@ -10,21 +10,25 @@
     {{outlet}}
 </script>
 
-
 <!--List-->
 <script type="text/x-handlebars" data-template-name="root/list">
-    {{ render "StationListItems" }}
-</script>
-
-<script type="text/x-handlebars" data-template-name="listView">
-    <h3>Stations</h3>
-    {{each controller itemViewClass="App.ListItemView"}} 
+    So, this is the CollectionView
+    {{view.controller}}
 </script>
 
 <script type="text/x-handlebars" data-template-name="listItemView">
     IM BATMAN!
-    {{#linkTo "context" this}} {{ title }} : {{ station }}{{/linkTo}}
-    {{bodyTemplate}}
+    {{#with view.content}}
+        <div>
+            <a {{ action expand view.content target="view"}}>Expandera!</a>
+            {{#linkTo "context" view.content}} {{ title }} : {{ station }}{{/linkTo}}
+        </div>
+        
+        {{#if view.expanded}}
+        Well, I'm taking up rather a lot of space, aren't I?
+        {{/if}}
+
+    {{/with}}
 </script>
 
 <!--Dashboard-->
